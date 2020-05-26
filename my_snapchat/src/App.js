@@ -8,6 +8,7 @@ import {
   Link
 } from "react-router-dom";
 import Register from './components/register/Register';
+import Connection from './components/connection/Connection';
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
     <Router>
       <Navbar />
       <Route exact path='/register' component={Register} />
-
+      <Route exact path='/connection' component={Connection} />
   </Router>
   );
 }
