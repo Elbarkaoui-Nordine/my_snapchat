@@ -34,7 +34,7 @@ const Connection = (logged) => {
             var user = response.data;
             store.dispatch({type: 'login_success', user: user});
             var token = JSON.stringify(user.data);
-            localStorage.setItem('data', token)
+            localStorage.setItem('data', token);
         })
         .catch((error) => {
             store.dispatch({type: 'login_fail'});
