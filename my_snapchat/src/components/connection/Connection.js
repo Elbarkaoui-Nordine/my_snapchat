@@ -1,8 +1,9 @@
 import React,{useState, useEffect} from 'react';
 import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 import axios from 'axios';
+import store from '../../store';
 
-const Connection = () => {
+const Connection = (logged) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -17,12 +18,12 @@ const Connection = () => {
     //         setError('');
     //     }   
     // }, [error])
-
+    console.log(logged);
     const sendData = (e) => {
         e.preventDefault();
         if(email === '') return setError('Email is empty');
         if(password === '') return setError('Password is empty');
-        
+      
         setError('');
         axios
         .post('http://snapi.epitech.eu/connection', {
@@ -30,9 +31,13 @@ const Connection = () => {
                 password: password
         })
         .then(response => {
-            console.log(response);
+            var user = response.data;
+            store.dispatch({type: 'login_success', user: user});
+            var token = user.data.token;
+            localStorage.setItem('token', token)
         })
         .catch((error) => {
+            store.dispatch({type: 'login_fail'});
             setError('Email or password is incorrect');
             console.log(error);
         })

@@ -9,15 +9,20 @@ import {
 } from "react-router-dom";
 import Register from './components/register/Register';
 import Connection from './components/connection/Connection';
-
+import store from './store';
+import { Provider } from 'react-redux'; 
 
 function App() {
+  const isLogged = store.getState().auth['logged'];
+  console.log(isLogged)
   return (
-    <Router>
-      <Navbar />
-      <Route exact path='/register' component={Register} />
-      <Route exact path='/connection' component={Connection} />
-  </Router>
+    <Provider store={store}>
+      <Router>
+        <Navbar />
+        <Route exact path='/register' component={Register} />
+        <Route exact path='/connection' render={() => isLogged === true ? <Connection log={isLogged} /> : < Connection log={isLogged} />} />
+      </Router>
+    </Provider>
   );
 }
 
