@@ -22,6 +22,10 @@ export default function(state = inistialState, action)
                 isLoading: false
             };
         break;
+        case 'is_logged':
+            return{
+
+            }
         case 'login_fail':
             return {
                 ...state,

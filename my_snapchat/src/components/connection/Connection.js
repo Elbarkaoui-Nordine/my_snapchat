@@ -33,8 +33,8 @@ const Connection = (logged) => {
         .then(response => {
             var user = response.data;
             store.dispatch({type: 'login_success', user: user});
-            var token = user.data.token;
-            localStorage.setItem('token', token)
+            var token = JSON.stringify(user.data);
+            localStorage.setItem('data', token)
         })
         .catch((error) => {
             store.dispatch({type: 'login_fail'});
