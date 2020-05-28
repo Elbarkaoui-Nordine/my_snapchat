@@ -13,7 +13,7 @@ import HomePage from './components/homepage/HomePage';
 import Snap from './components/snap/Snap';
 import store from './store';
 import { Provider } from 'react-redux'; 
-
+import { Redirect } from 'react-router-dom';
 let token = localStorage.getItem('data');
 console.log(token)
 if(token){
@@ -27,10 +27,10 @@ function App() {
     <Provider store={store}>
       <Router>
         <Navbar /> 
-        <Route exact path='/'  render={() => isLogged === true ?   <HomePage /> : <Connection />} />
-        <Route exact path='/snap'  render={() => isLogged === true ?   <Snap /> : <Connection />} />
-        <Route exact path='/register'  render={() => isLogged === true ? <HomePage /> : < Register />}/>
-        <Route exact path='/connection' render={() => isLogged === true ? <HomePage /> : < Connection />} />
+        <Route exact path='/'  render={() => isLogged === true ? <HomePage /> : <Redirect to='/connection' /> } />
+        <Route exact path='/snap'  render={() => isLogged === true ? <Snap /> : <Redirect to='/connection' /> } />
+        <Route exact path='/register'  render={() => isLogged === true ?  <Redirect to='/' /> : < Register />}/>
+        <Route exact path='/connection' render={() => isLogged === true ? <Redirect to='/' /> : < Connection />} />
       </Router>
     </Provider>
   );

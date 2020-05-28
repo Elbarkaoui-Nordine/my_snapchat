@@ -25,8 +25,8 @@ const NavBar = (isLogged) => {
                 {store.getState().auth['logged']
                     ?   <Nav.Link href="/" onClick={logOut}>Logout</Nav.Link> 
                     :   <div style={{display:'flex'}}>
-                            <Nav.Link href="Connection">Login</Nav.Link>
-                            <Nav.Link href="Register">Register</Nav.Link> 
+                            <Nav.Link href="connection">Login</Nav.Link>
+                            <Nav.Link href="register">Register</Nav.Link> 
                         </div>
                 }
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">

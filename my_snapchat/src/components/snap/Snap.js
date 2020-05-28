@@ -5,7 +5,7 @@ import store from '../../store';
 import './Snap.css';
 const Snap = () => {
 
-    const [getSnaps, setGetSnap] = useState([]);
+    const [getSnaps, setGetSnaps] = useState([]);
     const [seconds, setSeconds] = useState(0);
     const token = store.getState().auth['verification']['user']['token'];
 
@@ -40,7 +40,7 @@ const Snap = () => {
         .get('http://snapi.epitech.eu/snaps', config)
         .then(response => {
           if(response.data.data !== getSnaps)
-              setGetSnap(response.data.data);
+              setGetSnaps(response.data.data);
       })
         .catch((error) => {
           console.log(error)
