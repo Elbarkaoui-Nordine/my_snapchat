@@ -12,7 +12,6 @@ const SendImage = props => {
 
   const onFileChange = (e) => {
     let files = e.target.files || e.dataTransfer.files;
-    console.log(files[0].split('.').pop());
     setPicture(files);
     if (!files.length) {
         console.log('no files');
@@ -47,6 +46,14 @@ const SendImage = props => {
 
   const sendSnap = () => {
 
+    if(picture.length === 0) return alert('You need to pick a photo');
+    if(selectedUsers === '') return alert('You need to select a user to send your snap');
+    if(secondes > 10 || secondes < 0 || secondes === '' ) return alert ('A snap need to be between 1-10s !')
+    let fileExtension =  picture[0].name.split('.').pop();
+    let exts = ['jpg', 'jpeg', 'png']
+    if(!exts.includes(fileExtension)){
+      return alert('Your picture need to have the \'jpg\', \'jpeg\',\'png\' extension')
+    }
 
     const bodyFormData = new FormData();
     bodyFormData.append('duration',secondes)
