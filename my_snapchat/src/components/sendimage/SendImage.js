@@ -48,14 +48,11 @@ const App = props => {
       }
     }
 
-    const body = new FormData();
-    body.append('image', picture);
-
     axios
     .post('http://snapi.epitech.eu/snap', {
       duration: secondes,
       to: selectedUsers,
-      image: body.get('image')
+      image: picture
     }, config)
     .then(response => {
       console.log(response);
