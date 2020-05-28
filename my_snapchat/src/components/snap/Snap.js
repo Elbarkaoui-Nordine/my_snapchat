@@ -42,11 +42,10 @@ const Snap = () => {
         .then((response) => response.blob())
         .then((blob) => {
   
-         const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement('img');
-        link.src = url;
-   
-         document.body.appendChild(link);
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const link = document.createElement('img');
+          link.src = url;
+          document.body.appendChild(link);
         })
       })
         .catch((error) => {
