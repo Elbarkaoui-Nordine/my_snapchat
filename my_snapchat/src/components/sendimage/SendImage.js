@@ -89,7 +89,7 @@ const App = props => {
     )}
   </div>
   <div> 
-    <label for="secondes">Number of secondes (1-10):</label>
+    <label htmlFor="secondes">Number of secondes (1-10):</label>
     <input className='text-center ml-2' type="number" id="secondes" name="secondes"
     min="1" max="10" defaultValue='5' onChange={ e => setSecondes(e.target.value)}/>
   </div>

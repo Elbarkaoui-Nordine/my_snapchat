@@ -9,15 +9,6 @@ const Connection = (logged) => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
-    // setTest()
-
-    // useEffect(() => {
-    //     if (error !== '')
-    //     {
-    //         alert(error);
-    //         setError('');
-    //     }   
-    // }, [error])
     console.log(logged);
     const sendData = (e) => {
         e.preventDefault();

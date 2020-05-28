@@ -2,25 +2,12 @@ import React,{useState, useEffect} from 'react';
 import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 import axios from 'axios';
 
-
-
-
 const Register = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
-
-    // setTest()
-
-    // useEffect(() => {
-    //     if (error !== '')
-    //     {
-    //         alert(error);
-    //         setError('');
-    //     }   
-    // }, [error])
 
     const sendData = (e) => {
         e.preventDefault();
@@ -35,8 +22,7 @@ const Register = () => {
                 email: email,
                 password: password
         })
-        .then(response => {
-            
+        .then(response => {            
             alert('Successfuly registered !')
         })
         .catch((error) => {

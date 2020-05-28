@@ -5,12 +5,6 @@ import store from '../../store';
 
 
 const NavBar = (isLogged) => {
-    const [test,setTest] = useState([]);
-    // setTest()
-
-    // useEffect( () => {
-
-    // },[*variableChanging*])
 
     const logOut = () => {
         localStorage.removeItem('data');
@@ -24,12 +18,16 @@ const NavBar = (isLogged) => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
                 <Nav.Link href="/">Home</Nav.Link>
-     
                 {store.getState().auth['logged']
-                ?  <Nav.Link href="Logout" onClick={logOut}>Logout</Nav.Link> 
-                : <div style={{
-                    display:'flex',
-                }}><Nav.Link href="Connection">Login</Nav.Link> <Nav.Link href="Register">Register</Nav.Link> </div>
+                    ?   <Nav.Link href="snap">Snap</Nav.Link> 
+                    :   null 
+                }
+                {store.getState().auth['logged']
+                    ?   <Nav.Link href="Logout" onClick={logOut}>Logout</Nav.Link> 
+                    :   <div style={{display:'flex'}}>
+                            <Nav.Link href="Connection">Login</Nav.Link>
+                            <Nav.Link href="Register">Register</Nav.Link> 
+                        </div>
                 }
                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/">Action</NavDropdown.Item>
