@@ -28,13 +28,26 @@ const Snap = () => {
     }, [firstEntry])
       
     const openSnap = (idSnap, durationSnap) => {
-        console.log(idSnap, durationSnap);
         var url = "http://snapi.epitech.eu/snap/" + idSnap
-        console.log(url)
         axios
         .get(url, config)
         .then(response => {
-            console.log(response);
+          fetch(url, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/octet-stream',
+                'token': token
+            },
+               })
+        .then((response) => response.blob())
+        .then((blob) => {
+  
+         const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement('img');
+        link.src = url;
+   
+         document.body.appendChild(link);
+        })
       })
         .catch((error) => {
           console.log(error.response);
@@ -46,6 +59,8 @@ const Snap = () => {
             <Container>
             <p> All snap</p>
             {getSnaps.map((snap, i) => <div onClick={() => openSnap(snap.snap_id, snap.duration)} key={snap.snap_id+snap.from+i}> {snap.from}</div>)}
+            <img src='' id='img' />
+            <div id='box'></div>
             </Container>
         </div>
     )
