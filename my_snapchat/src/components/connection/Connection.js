@@ -26,6 +26,7 @@ const Connection = (logged) => {
             store.dispatch({type: 'login_success', user: user});
             var token = JSON.stringify(user.data);
             localStorage.setItem('data', token);
+            window.location.reload();
         })
         .catch((error) => {
             store.dispatch({type: 'login_fail'});

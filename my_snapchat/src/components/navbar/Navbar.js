@@ -23,7 +23,7 @@ const NavBar = (isLogged) => {
                     :   null 
                 }
                 {store.getState().auth['logged']
-                    ?   <Nav.Link href="Logout" onClick={logOut}>Logout</Nav.Link> 
+                    ?   <Nav.Link href="/" onClick={logOut}>Logout</Nav.Link> 
                     :   <div style={{display:'flex'}}>
                             <Nav.Link href="Connection">Login</Nav.Link>
                             <Nav.Link href="Register">Register</Nav.Link> 
