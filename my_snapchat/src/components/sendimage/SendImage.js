@@ -41,26 +41,27 @@ const App = props => {
     if(picture.length === 0) return alert('You need to pick a photo');
     if(selectedUsers === '') return alert('You need to select a user to send your snap');
     if(secondes > 10 || secondes < 0 || secondes === '' ) return alert ('A snap need to be between 1-10s !')
+
     let config = {
       headers: {
-        "Content-Type": "multipart/form-data",
         "token": token
       }
     }
-    console.log(selectedUsers);
-    console.log(secondes)
-    console.log(picture);
+
+    const body = new FormData();
+    body.append('image', picture);
+
     axios
-    .post('http://snapi.epitech.eu/snap', config, {
+    .post('http://snapi.epitech.eu/snap', {
       duration: secondes,
       to: selectedUsers,
-      image: picture
-    })
+      image: body.get('image')
+    }, config)
     .then(response => {
       console.log(response);
     })
     .catch((error) => {
-      console.log(error);
+      console.log(error.response);
     })
 
   }
