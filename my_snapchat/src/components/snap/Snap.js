@@ -16,9 +16,8 @@ const Snap = () => {
       axios
       .get('http://snapi.epitech.eu/snaps', config)
       .then(response => {
-        console.log(response);
-        console.log(response.data.data);
-        setGetSnap(response.data.data);
+        if(response.data.data !== getSnaps)
+            setGetSnap(response.data.data);
       })
       .catch((error) => {
         console.log(error.response);
@@ -29,7 +28,7 @@ const Snap = () => {
         <div>
             <Container>
             <p> All snap</p>
-            {getSnaps.map((snap) => <div> {snap.from}</div>)}
+            {getSnaps.map((snap, i) => <div key={snap.id+snap.from+i}> {snap.from}</div>)}
             </Container>
         </div>
     )
