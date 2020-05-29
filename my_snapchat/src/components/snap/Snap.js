@@ -31,9 +31,7 @@ const Snap = () => {
       }, 1000);
       return () => clearInterval(interval);
       }
-
     }, [seconds]);
-
 
     useEffect(() => {
         axios
@@ -45,7 +43,6 @@ const Snap = () => {
         .catch((error) => {
           console.log(error)
       })
-       console.log('gererteeererre') 
     }, [getSnaps])
       
     const openSnap = (idSnap, durationSnap) => {
@@ -76,24 +73,19 @@ const Snap = () => {
     }
     return(
 
-        <div>
-            <Container>
-            
-            <p> All snap</p>
-    
-      <div className="row justify-content-between">
-            {getSnaps.map((snap, i) =>    <div className='card-body border border-primary  col-xs-12 col-sm-5 col-md-5 m-1 rounded' onClick={() => openSnap(snap.snap_id, snap.duration)} key={snap.snap_id+snap.from+i}> {snap.from}</div>)}
-      </div>
-
-     
-          
-            <div>
-              { seconds > 0 ?  <img src='' id='img' /> : null}
-              { seconds > 0 ?  <p className='seconds'> {seconds}</p> : null}
-            </div>
-            <div id='box'></div>
-            </Container>
+    <div>
+        <Container>
+          <p> All snap</p>
+        <div className="row justify-content-between">
+          {getSnaps.map((snap, i) => <div className='card-body border border-primary  col-xs-12 col-sm-5 col-md-5 m-1 rounded' onClick={() => openSnap(snap.snap_id, snap.duration)} key={snap.snap_id+snap.from+i}> {snap.from}</div>)}
         </div>
+        <div>
+          { seconds > 0 ?  <img src='' id='img'onClick={() => setSeconds(0)} /> : null}
+          { seconds > 0 ?  <p className='seconds'> {seconds}</p> : null}
+        </div>
+        <div id='box'></div>
+        </Container>
+    </div>
     )
 
 }
