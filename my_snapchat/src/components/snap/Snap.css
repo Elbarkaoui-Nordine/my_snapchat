@@ -11,3 +11,22 @@
     bottom: 0;
     margin-left: 90%;
 }
+
+.card-body{
+    text-align: center;
+    font-size: 23px;
+}
+
+#img{
+    position: absolute;
+    top: 0;
+    height:100%;
+    width: 100vw;
+}
+
+.seconds{
+    z-index: 999;
+    position: absolute;
+    bottom: 0;
+    margin-left: 90%;
+}

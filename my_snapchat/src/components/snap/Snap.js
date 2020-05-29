@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
+import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Form, FormControl, Button, Container ,ListGroup,ListGroupItem} from 'react-bootstrap';
 import axios from 'axios';
 import store from '../../store';
 import './Snap.css';
@@ -50,20 +50,16 @@ const Snap = () => {
       
     const openSnap = (idSnap, durationSnap) => {
         var url = "http://snapi.epitech.eu/snap/" + idSnap
-        axios
-        .get(url, config)
-        .then(response => {
-          setSeconds(durationSnap);
-          fetch(url, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/octet-stream',
-                'token': token
-            },
-               })
+        fetch(url, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/octet-stream',
+            'token': token
+          },
+        })
         .then((response) => response.blob())
         .then((blob) => {
-
+          setSeconds(durationSnap);
           const url = window.URL.createObjectURL(new Blob([blob]));
           document.getElementById('img').src = url;
           axios
@@ -76,19 +72,21 @@ const Snap = () => {
           .catch((error) => {
             console.log('seen error ', error);
           })
-         
-        })
-      })
-        .catch((error) => {
-          console.log(error.response);
-      })
+        })  
     }
     return(
 
         <div>
             <Container>
+            
             <p> All snap</p>
-            {getSnaps.map((snap, i) => <div onClick={() => openSnap(snap.snap_id, snap.duration)} key={snap.snap_id+snap.from+i}> {snap.from}</div>)}
+    
+      <div className="row justify-content-between">
+            {getSnaps.map((snap, i) =>    <div className='card-body border border-primary  col-xs-12 col-sm-5 col-md-5 m-1 rounded' onClick={() => openSnap(snap.snap_id, snap.duration)} key={snap.snap_id+snap.from+i}> {snap.from}</div>)}
+      </div>
+
+     
+          
             <div>
               { seconds > 0 ?  <img src='' id='img' /> : null}
               { seconds > 0 ?  <p className='seconds'> {seconds}</p> : null}
