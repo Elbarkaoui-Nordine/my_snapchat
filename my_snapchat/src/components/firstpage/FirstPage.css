@@ -1,0 +1,23 @@
+#register{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 50%;
+    width: 100%;
+    background-color: blue;
+}
+
+#connection{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 50%;
+    width: 100%;
+    background-color: red;
+}
+
+.h1{
+    margin-top: 50%;
+}
