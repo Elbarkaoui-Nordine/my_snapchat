@@ -18,7 +18,12 @@
     width: 100vw;
     
 }
-
+#forever{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 30%;
+}
 .seconds{
     z-index: 999;
     position: fixed;

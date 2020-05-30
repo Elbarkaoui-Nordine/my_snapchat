@@ -7,8 +7,8 @@ const HomePage = () => {
 
         <div >
             <Container>
+                <p>Homepage</p>
                 <SendImage />
-            <p>Homepage</p>
             </Container>
         </div>
     )

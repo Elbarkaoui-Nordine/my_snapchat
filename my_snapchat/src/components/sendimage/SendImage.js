@@ -70,7 +70,9 @@ const SendImage = props => {
     axios
     .post('http://snapi.epitech.eu/snap',bodyFormData, config)
     .then(response => {
-      console.log(response);
+      setPicture([]);
+      alert('Snap sended correctly !')
+      document.location.reload();
     })
     .catch((error) => {
       console.log(error.response);
@@ -84,11 +86,11 @@ const SendImage = props => {
 
   return (
     <div>
-      <h2 className='mb-3'>Welcome to our Snap</h2>
+      <h2 className='mb-3 d-flex justify-content-center'>Welcome to our Snap</h2>
  
   <div style={{height: '300px', overflow: 'scroll'}}>
     {users.length === 0 ? <h3 className='mt-5'> Choose a picture to snap </h3> : users.map((user, i) => 
-    <div key={i + user.email}> 
+    <div className='d-flex justify-content-center' key={i + user.email}> 
       <label htmlFor={user.email + i}> {user.email} </label>
       <input type='radio' id={user.email + i}  
       checked={selectedUsers === user.email} 
@@ -98,10 +100,10 @@ const SendImage = props => {
       </div> 
     )}
   </div>
-
-  <input id="my-file-selector" type="file" name="file" onChange={onFileChange}></input>
-
-  <div> 
+  <div className='d-flex justify-content-center mt-5'>
+    <input id="my-file-selector" type="file" name="file" onChange={onFileChange}></input>
+  </div>
+  <div  className='d-flex justify-content-center'> 
     <label htmlFor="secondes">Number of secondes (1-10):</label>
     <input className='text-center ml-2' type="number" id="secondes" name="secondes"
     min="1" max="10" defaultValue='5' onChange={ e => setSecondes(e.target.value)}/>

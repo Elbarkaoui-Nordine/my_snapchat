@@ -3,6 +3,7 @@ import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Form, FormControl, Button,
 import axios from 'axios';
 import store from '../../store';
 import './Snap.css';
+import foreveralone from './foreveralone.png';
 const Snap = () => {
 
     const [getSnaps, setGetSnaps] = useState([]);
@@ -77,7 +78,7 @@ const Snap = () => {
         <Container>
           <p className='ml-2'> All snap</p>
         <div className="row justify-content-between">
-          {getSnaps.map((snap, i) => <div className='card-body border border-primary  col-xs-12 col-sm-5 col-md-5 m-1 rounded' onClick={() => openSnap(snap.snap_id, snap.duration)} key={snap.snap_id+snap.from+i}> {snap.from}</div>)}
+          {getSnaps.length === 0 ? <div className='d-flex justify-content-center'> <h2 className='ml-3'> No snaps</h2><img id='forever' src={foreveralone}/> </div> :getSnaps.map((snap, i) => <div className='card-body border border-primary  col-xs-12 col-sm-5 col-md-5 m-1 rounded' onClick={() => openSnap(snap.snap_id, snap.duration)} key={snap.snap_id+snap.from+i}> {snap.from}</div>)}
         </div>
         <div>
           { seconds > 0 ?  <img src='' id='img'onClick={() => setSeconds(0)} /> : null}
