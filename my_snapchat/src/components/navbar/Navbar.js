@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import { Navbar, NavItem, NavDropdown, MenuItem, Nav, Form, FormControl, Button } from 'react-bootstrap';
 import store from '../../store';
+import './style.css';
 
 
 
@@ -23,8 +24,8 @@ const NavBar = (isLogged) => {
                     :   null 
                 }
                 {store.getState().auth['logged']
-                    ?   <Nav.Link href="/" onClick={logOut}>Logout</Nav.Link> 
-                    :   <div>
+                    ?   <Nav.Link href="/"  onClick={logOut}>Logout</Nav.Link> 
+                    :   <div id='logButtons'>
                             <Nav.Link href="connection">Login</Nav.Link>
                             <Nav.Link href="register">Register</Nav.Link> 
                         </div>

@@ -36,7 +36,12 @@ const SendImage = props => {
       axios
       .get('http://snapi.epitech.eu/all', config)
       .then(response => {
-        setUsers(response.data.data)
+        let result = response.data.data.sort(function(a, b) {
+          var textA = a.email.toUpperCase();
+          var textB = b.email.toUpperCase();
+          return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+      });
+        setUsers(result);
       })
       .catch((error) => {
         console.log(error);
@@ -83,14 +88,17 @@ const SendImage = props => {
     setSelectedUsers(changeEvent.target.value);
   }
 
-
   return (
     <div>
       <h2 className='mb-3 d-flex justify-content-center'>Welcome to our Snap</h2>
  
-  <div style={{height: '300px', overflow: 'scroll'}}>
-    {users.length === 0 ? <h3 className='mt-5'> Choose a picture to snap </h3> : users.map((user, i) => 
-    <div className='d-flex justify-content-center' key={i + user.email}> 
+  <div style={{ overflow: 'scroll' , height:"60vh"}} className='justify-content-center'> 
+    {users.length === 0 ? <h3 className='mt-5 text-center div-snap '> Choose a picture to snap </h3> : users.map((user, i) => 
+
+
+
+    <div className='d-flex justify-content-center snap-email ' key={i + user.email}> 
+    
       <label htmlFor={user.email + i}> {user.email} </label>
       <input type='radio' id={user.email + i}  
       checked={selectedUsers === user.email} 
@@ -99,20 +107,30 @@ const SendImage = props => {
       value={user.email}/>
       </div> 
     )}
+
+
+    
   </div>
   <div className='d-flex justify-content-center mt-5'>
     <input id="my-file-selector" type="file" name="file" onChange={onFileChange}></input>
   </div>
-  <div  className='d-flex justify-content-center'> 
+  <div  className='d-flex justify-content-center row'> 
     <label htmlFor="secondes">Number of secondes (1-10):</label>
-    <input className='text-center ml-2' type="number" id="secondes" name="secondes"
+
+    <input className='text-center ml-2 col-sm-6 col-md-4' type="number" id="secondes" name="secondes"
     min="1" max="10" defaultValue='5' onChange={ e => setSecondes(e.target.value)}/>
+
+    <button className='btn btn-primary col-sm-6 col-md-4 mt-2' onClick={sendSnap}> Snap </button>
+
   </div>
-    <div className='row justify-content-center'>
-      <button className='btn btn-primary' onClick={sendSnap}> Snap </button>
-    </div>
+   
+   
+    
     </div>
   );
+
+
+  
 };
 
 export default SendImage;

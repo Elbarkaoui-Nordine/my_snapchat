@@ -7,7 +7,6 @@ const HomePage = () => {
 
         <div >
             <Container>
-                <p>Homepage</p>
                 <SendImage />
             </Container>
         </div>

@@ -4,3 +4,19 @@
     float: right; 
     margin-right: 10px;
 }
+
+.snap-email{
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    min-width: 30%;
+    margin: auto;
+    margin-bottom:15px;
+    background-color: #3cb1e3;
+    color:white;
+}
+
+.div-snap{
+    height: 60vh ;
+    overflow: scroll;
+}
